@@ -31,6 +31,6 @@
       <ComboBox fx:id="pizzaSelector" layoutX="48.0" layoutY="185.0" onAction="#selPizza" prefHeight="25.0" prefWidth="172.0" promptText="PIZZE" />
       <Label layoutX="48.0" layoutY="154.0" prefHeight="17.0" prefWidth="92.0" text="Lista pizze" />
       <Label layoutX="362.0" layoutY="154.0" text="Ordine" />
-      <ListView fx:id="pizzeInOrdine" layoutX="252.0" layoutY="178.0" prefHeight="246.0" prefWidth="271.0" />
+      <ListView fx:id="pizzeInOrdine" layoutX="252.0" layoutY="178.0" onMouseClicked="#selTabella" prefHeight="246.0" prefWidth="271.0" />
    </children>
 </AnchorPane>

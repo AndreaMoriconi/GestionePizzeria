@@ -20,33 +20,30 @@ public class Controller {
     private Model model;
     private MenuItem item1;
     private MenuItem item2;
-
+    private Scene scena2;
+    private Controller2 controller2;
 
     public Controller(){
         model = new Model();
         item1 = new MenuItem("modifica");
         item2 = new MenuItem("elimina");
         contextMenu.getItems().addAll(item1, item2);
-
-
-    }
-    public void getController2Scene(){}
-    public void aggiungiOrdine(ActionEvent event) {
         try {
             FXMLLoader f2 = new FXMLLoader(getClass().getResource("finestraAdd.fxml"));
             Parent fin2 = f2.load();
+            scena2 = new Scene(fin2, 700, 600);
+            controller2 = f2.getController();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
+    }
+    public void aggiungiOrdine(ActionEvent event) {
+        try {
             Stage stage = (Stage) tabella.getScene().getWindow();
-
             stage.setTitle("Nuovo Ordine");
             //crea e setta la scena
-            Scene scena = new Scene(fin2, 700, 600);
-            stage.setScene(scena);
-
-            //------comunicazione tra  scene -----------------
-            //crea un riferimento al controller della nuova scena
-            Controller2 controller2 = f2.getController();
-            //richiama il metodo del controller della nuova scena
+            stage.setScene(scena2);
             controller2.utile(model, tabella);
 
         } catch (Exception e) {
@@ -54,7 +51,12 @@ public class Controller {
         }
     }
     public void modificaOrdine(Ordine o){
-
+        Stage stage = (Stage) tabella.getScene().getWindow();
+        stage.setTitle("Nuovo Ordine");
+        //crea e setta la scena
+        stage.setScene(scena2);
+        controller2.modifica(o);
+        model.cancella(o);
     }
         public void selTabella(MouseEvent e) {
             Ordine x = (Ordine) tabella.getSelectionModel().getSelectedItem();
