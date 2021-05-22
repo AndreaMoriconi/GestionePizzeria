@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="menuName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="37.0" layoutY="30.0" prefHeight="22.0" prefWidth="121.0" text="NOME MENÙ" />
+      <TextField fx:id="insertFMenuName" layoutX="151.0" layoutY="29.0" />
+      <TextField layoutX="151.0" layoutY="90.0" />
+      <TextField layoutX="450.0" layoutY="90.0" prefHeight="25.0" prefWidth="44.0" />
+      <Label layoutX="37.0" layoutY="92.0" prefHeight="22.0" prefWidth="84.0" text="NOME PIZZA" />
+      <Label layoutX="383.0" layoutY="94.0" text="PREZZO" />
+      <Label layoutX="37.0" layoutY="147.0" prefHeight="0.0" prefWidth="75.0" text="INGREDIENTI" />
+      <TextField layoutX="119.0" layoutY="143.0" prefHeight="25.0" prefWidth="464.0" />
+      <ListView layoutX="28.0" layoutY="177.0" prefHeight="200.0" prefWidth="344.0" />
+      <Button layoutX="400.0" layoutY="352.0" mnemonicParsing="false" text="Aggiungi" />
+   </children>
+</AnchorPane>
