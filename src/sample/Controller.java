@@ -16,6 +16,8 @@ import java.util.Optional;
 
 public class Controller {
     @FXML private ListView tabella;
+    @FXML private MenuButton menu;
+    @FXML private Label selectedMenu;
     private ContextMenu contextMenu = new ContextMenu();
     private Model model;
     private MenuItem item1;
@@ -38,6 +40,9 @@ public class Controller {
         }
 
     }
+    public void initialize(){
+        selectedMenu.setText("nessun menù selezionato");
+    }
     public void aggiungiOrdine(ActionEvent event) {
         try {
             Stage stage = (Stage) tabella.getScene().getWindow();
@@ -58,6 +63,27 @@ public class Controller {
         controller2.modifica(o);
         model.cancella(o);
     }
+
+    public void addMenu(ActionEvent event) throws Exception{
+        System.out.println("add menu");
+        try {
+            FXMLLoader f3 = new FXMLLoader(getClass().getResource("finestraAddMenu.fxml"));
+            Parent fin3 = f3.load();
+
+            Stage stage = new Stage();
+            stage.show();
+
+            stage.setTitle("compila menù");
+            //crea e setta la scena
+            Scene scena=new Scene(fin3, 600, 500);
+            stage.setScene(scena);
+
+        }catch(Exception e){
+                System.out.println(e);
+        }
+
+
+    }
         public void selTabella(MouseEvent e) {
             Ordine x = (Ordine) tabella.getSelectionModel().getSelectedItem();
             System.out.println(x);
@@ -65,8 +91,7 @@ public class Controller {
             item1.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
                     System.out.println("modify selected");
-                    modificaOrdine((Ordine)tabella.getSelectionModel().getSelectedItem());// crea metodo modifica e crea collegamento con altro controller per riempire la finestre con i dati dell'oggetto passato
-                    //System.out.println("posso andare avanti qua");
+                    modificaOrdine((Ordine)tabella.getSelectionModel().getSelectedItem());
                 }
             });
             item2.setOnAction(new EventHandler<ActionEvent>() {
