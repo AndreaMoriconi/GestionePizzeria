@@ -12,6 +12,9 @@ public class Menu {
     public Menu(String nome){
         this.nome = nome;
     }
+    public Menu(Menu menu){
+        this.nome= menu.getNome();
+    }
 
     public ObservableList<Pizza> getPizze(){
         return pizze;
@@ -21,10 +24,14 @@ public class Menu {
         this.nome = nome;
     }
 
-    public void addPizza(Pizza p){
-        pizze.add(p);
+    public void addPizze(ObservableList<Pizza> p){
+        pizze = p;
     }
     public void eliminaPizza(Pizza p){
         pizze.remove(p);
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

@@ -27,7 +27,7 @@
               <items>
                 <MenuItem mnemonicParsing="false">
                      <graphic>
-                        <MenuButton mnemonicParsing="false" text="Seleziona menù" />
+                        <MenuButton fx:id="selezionaMenu" mnemonicParsing="false" text="Seleziona menù" />
                      </graphic>
                   </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#addMenu" text="Aggiungi menù" />

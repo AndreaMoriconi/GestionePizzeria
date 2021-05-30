@@ -17,6 +17,7 @@ import java.util.Optional;
 public class Controller {
     @FXML private ListView tabella;
     @FXML private MenuButton menu;
+    @FXML private MenuButton selezionaMenu;
     @FXML private Label selectedMenu;
     private ContextMenu contextMenu = new ContextMenu();
     private Model model;
@@ -24,6 +25,8 @@ public class Controller {
     private MenuItem item2;
     private Scene scena2;
     private Controller2 controller2;
+    private Controller3 controller3;
+    private Menu courrentMenu;
 
     public Controller(){
         model = new Model();
@@ -41,18 +44,28 @@ public class Controller {
 
     }
     public void initialize(){
+        //selezionaMenu = new MenuButton();
         selectedMenu.setText("nessun menù selezionato");
     }
     public void aggiungiOrdine(ActionEvent event) {
+        if(courrentMenu == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ATTENZIONE!");
+            alert.setHeaderText("Nessun menu selezionato!");
+            alert.setContentText("Prima di aggiungere un ordine seleziona o crea un nuovo menù");
+
+            alert.showAndWait();
+            return;
+        }
         try {
             Stage stage = (Stage) tabella.getScene().getWindow();
             stage.setTitle("Nuovo Ordine");
             //crea e setta la scena
             stage.setScene(scena2);
-            controller2.utile(model, tabella);
+            controller2.utile(model, tabella, courrentMenu);
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
     public void modificaOrdine(Ordine o){
@@ -77,12 +90,19 @@ public class Controller {
             //crea e setta la scena
             Scene scena=new Scene(fin3, 600, 500);
             stage.setScene(scena);
+            controller3 = f3.getController();
+            controller3.util(model, selezionaMenu, this);
 
         }catch(Exception e){
                 System.out.println(e);
         }
 
 
+    }
+    public void cliccaMenuSelezionato(ActionEvent e) {
+        System.out.println("cambiocontrooler");
+        selectedMenu.setText( ((MenuItem) e.getSource()).getText());
+        courrentMenu = model.getMenu(((MenuItem) e.getSource()).getText());
     }
         public void selTabella(MouseEvent e) {
             Ordine x = (Ordine) tabella.getSelectionModel().getSelectedItem();

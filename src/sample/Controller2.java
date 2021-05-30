@@ -30,12 +30,16 @@ public class Controller2  implements Initializable{
     private ContextMenu contextMenu = new ContextMenu();
     private MenuItem item1;
     Model model;
-    ObservableList<String> pizze;
+    ObservableList<Pizza> pizze;
+    private Menu courrentMenu;
 
 
-    public void utile(Model model, ListView tabella) {
+    public void utile(Model model, ListView tabella, Menu courrentMenu) {
         this.model = model;
         this.tabella = tabella;
+        this.courrentMenu = courrentMenu;
+        ObservableList<Pizza> menu= FXCollections.observableArrayList(courrentMenu.getPizze());
+        pizzaSelector.setItems(menu);
         // pulizia dei field:
         nome.setText("");
         cognome.setText("");
@@ -47,15 +51,19 @@ public class Controller2  implements Initializable{
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList menu= FXCollections.observableArrayList("margherita", "salamino", "verdure", "quattro formaggi","tonno e cipolle");
-        pizzaSelector.setItems(menu);
+
         pizze = FXCollections.observableArrayList();
         item1 = new MenuItem("elimina");
         contextMenu.getItems().addAll(item1);
     }
     public void selPizza(ActionEvent e){
-        pizze.add((String) pizzaSelector.getValue());
-        pizzeInOrdine.setItems(pizze);
+        if(pizzaSelector.getValue() != null) {
+            pizze.add((Pizza) pizzaSelector.getValue());
+            pizzeInOrdine.setItems(pizze);
+            pizzaSelector.getSelectionModel().clearSelection();
+        }else{
+            return;
+        }
     }
 
     public void modifica(Ordine o){
@@ -80,7 +88,7 @@ public class Controller2  implements Initializable{
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    String pizza = (String)pizzeInOrdine.getSelectionModel().getSelectedItem();
+                    Pizza pizza = (Pizza) pizzeInOrdine.getSelectionModel().getSelectedItem();
                     pizze.remove(pizza);
                 } else {
                     System.out.println("annullata");

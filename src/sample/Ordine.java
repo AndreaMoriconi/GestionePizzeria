@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Ordine {
-    private ObservableList <String> pizze;
+    private ObservableList <Pizza> pizze;
     private Indirizzo indirizzo;
     private String nome;
     private String cognome;
@@ -50,10 +50,10 @@ public class Ordine {
     public void setOraConsegna(LocalTime ora){
         oraConsegna = ora;
     }
-    public void setPizze(ObservableList <String> pizze){
+    public void setPizze(ObservableList <Pizza> pizze){
         this.pizze = pizze;
     }
-    public ObservableList <String> getPizze(){
+    public ObservableList <Pizza> getPizze(){
         return pizze;
     }
 
